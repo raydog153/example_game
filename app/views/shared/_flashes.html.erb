@@ -1,0 +1,15 @@
+<% id = "flash_messages" if local_assigns[:id].nil? %>
+<div id="<%= id %>">
+  <% if notice %>
+    <p class="alert alert-success mt-3 alert-dismissible fade show" role="alert">
+      <%= notice %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </p>
+  <% end %>
+  <% if alert %>
+    <p class="alert alert-danger mt-3 alert-dismissible fade show" role="alert">
+      <%= alert %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </p>
+  <% end %>
+</div>

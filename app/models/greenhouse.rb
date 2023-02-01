@@ -1,0 +1,2 @@
+class Greenhouse < ApplicationRecord
+end

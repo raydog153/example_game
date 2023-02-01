@@ -1,0 +1,23 @@
+<%= turbo_stream.replace "remote_modal" do %>
+  <%= turbo_frame_tag "remote_modal" do %>
+    <%= render "shared/modal_custom", title: "Add Greenhouse" do %>
+      <%
+        #form_path = @greenhouses.new_record? ? greenhouse_path : edit_greenhouse_path(@greenhouses)
+      %>
+
+      <%= form_with(model: @greenhouse, data: {controller: "form-validator", form_validator_target: "form", action: "turbo:submit-start->form-validator#validate"}) do |f| %>
+        <%= render "shared/model_error_messages", resource: @greenhouse %>
+        <div class="modal-body">
+          <div class="form-group">
+            <%= f.label :name, class: "col-form-label" %>
+            <%= f.text_field :name, autofocus: true, class: "form-control", required: true %>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <%= f.submit "Save", class: "btn btn-primary", data: {"turbo_frame": "app_content", "turbo-action": "advance", action:" 'click->form-validator#validate'"} %>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

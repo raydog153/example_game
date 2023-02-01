@@ -1,0 +1,7 @@
+<div class="row mt-5">
+  <ul class="navbar-nav nav flex-column mt-3">
+    <li class="nav-item">
+      <%= link_to("<i class=\"bi bi-house mx-2\"></i>#{I18n.t("greenhouse.add.label")}".html_safe, greenhouse_add_modal_path(), class: "btn btn-primary", data: {controller: "turbo"}) %>
+    </li>
+  </ul>
+</div>

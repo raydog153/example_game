@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ExampleGame</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+</head>
+
+<body class="main_body d-flex flex-column min-vh-100" data-controller="bootstrap">
+<div class="container-fluid flex-fill pe-0">
+  <div class="container main-content pb-0 pe-0">
+    <div class="row justify-content-center">
+
+      <%= render "shared/flashes", id: "flash" %>
+      <% if current_user.nil? %>
+        <div class="col-sm-6 col-lg-4 my-3">
+
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-sm-6 col-lg-4 mt-3">
+                <%= render "shared/flashes", id: "flash" %>
+              </div>
+            </div>
+            <div class="row justify-content-center">
+              <%= yield %>
+            </div>
+          </div>
+        </div>
+      <% else %>
+        <div class="col-sm-4 col-md-3 col-lg-2 navbar-left">
+          <%= render "layouts/nav_left" %>
+        </div>
+        <div class="col-sm-8 col-md-9 col-lg-9 col-xl-10 mt-3">
+          <div class="row justify-content-center">
+            <div class="col-sm-12 col-lg-12">
+              <%= yield %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<%= turbo_frame_tag "remote_modal" %>
+</body>
+</html>
